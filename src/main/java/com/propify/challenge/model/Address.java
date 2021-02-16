@@ -1,4 +1,4 @@
-package com.propify.challenge;
+package com.propify.challenge.model;
 
 public class Address {
 

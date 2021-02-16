@@ -1,4 +1,9 @@
-package com.propify.challenge;
+package com.propify.challenge.service;
+
+import com.propify.challenge.model.AddressMapper;
+import com.propify.challenge.model.Property;
+import com.propify.challenge.model.PropertyMapper;
+import com.propify.challenge.model.PropertyReport;
 
 import java.util.Collection;
 

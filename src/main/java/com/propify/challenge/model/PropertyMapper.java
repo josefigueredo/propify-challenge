@@ -1,10 +1,10 @@
-package com.propify.challenge;
+package com.propify.challenge.model;
 
-import org.apache.ibatis.annotations.Mapper;
+//import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Set;
 
-@Mapper
+//@Mapper
 public interface PropertyMapper {
 
     public void insert(Property property);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.propify.challenge.PropertyMapper">
+<mapper namespace="com.propify.challenge.model.PropertyMapper">
 
     <insert id="insert">
 INSERT INTO property (rent_price) VALUES (#{rentPrice});
@@ -14,11 +14,11 @@ UPDATE property ...
 DELETE FROM property ...
     </delete>
 
-    <select id="search" resultType="com.propify.challenge.Property">
+    <select id="search" resultType="com.propify.challenge.model.Property">
 SELECT * FROM property;
     </select>
 
-    <select id="findById" resultType="com.propify.challenge.Property">
+    <select id="findById" resultType="com.propify.challenge.model.Property">
 SELECT * FROM property WHERE id = #{id};
     </select>
 
