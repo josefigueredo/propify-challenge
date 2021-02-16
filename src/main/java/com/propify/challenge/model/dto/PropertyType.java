@@ -1,4 +1,4 @@
-package com.propify.challenge.model;
+package com.propify.challenge.model.dto;
 
 public enum PropertyType {
 

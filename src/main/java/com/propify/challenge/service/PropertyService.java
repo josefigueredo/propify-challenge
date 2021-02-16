@@ -1,11 +1,14 @@
 package com.propify.challenge.service;
 
-import com.propify.challenge.model.Property;
-import com.propify.challenge.model.PropertyReport;
+import com.propify.challenge.model.dao.PropertyDao;
+import com.propify.challenge.model.dto.Property;
+import com.propify.challenge.model.dto.PropertyReport;
 import com.propify.challenge.repository.AddressRepository;
 import com.propify.challenge.repository.PropertyRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.Collection;
 
@@ -27,29 +30,24 @@ public class PropertyService {
         this.propertyRepository = propertyRepository;
     }
 
-    public Collection<Property> search(String minRentPrice, String maxRentPrice) {
-        throw new RuntimeException("Not implemented");
+    public Flux<PropertyDao> search(String minRentPrice, String maxRentPrice) {
+        return propertyRepository.search(minRentPrice, maxRentPrice);
     }
 
-    public Property findById(int id) {
-        throw new RuntimeException("Not implemented");
-        //return propertyMapper.findById(id);
+    public Mono<PropertyDao> findById(int id) {
+        return propertyRepository.findById(id);
     }
 
-    public void insert(Property property) {
-        throw new RuntimeException("Not implemented");
-        //propertyMapper.insert(property);
-        //System.out.println("CREATED: " + property.getId());
+    public Mono<PropertyDao> insert(PropertyDao property) {
+        return propertyRepository.save(property);
     }
 
-    public void update(Property property) {
-        throw new RuntimeException("Not implemented");
-        //propertyMapper.update(property);
-        //System.out.println("UPDATED: " + property.getId());
+    public Mono<PropertyDao> update(PropertyDao property) {
+        return propertyRepository.save(property);
     }
 
     public void delete(int id) {
-        throw new RuntimeException("Not implemented");
+        propertyRepository.deleteById(id);
         //propertyMapper.delete(id);
         //System.out.println("DELETED: " + id);
 

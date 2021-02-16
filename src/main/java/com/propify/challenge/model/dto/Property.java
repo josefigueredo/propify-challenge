@@ -1,4 +1,4 @@
-package com.propify.challenge.model;
+package com.propify.challenge.model.dto;
 
 import lombok.Data;
 
@@ -7,13 +7,14 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 public class Property implements Serializable {
 
     private Integer id; // must be null for INSERT and not null for UPDATE
 
-    private String createTime;
+    private LocalDateTime createTime;
 
     @Enumerated(EnumType.STRING)
     private PropertyType type;

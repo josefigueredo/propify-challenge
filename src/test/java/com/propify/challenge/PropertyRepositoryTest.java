@@ -2,8 +2,8 @@ package com.propify.challenge;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.propify.challenge.model.Property;
-import com.propify.challenge.model.PropertyType;
+import com.propify.challenge.model.dto.Property;
+import com.propify.challenge.model.dto.PropertyType;
 import com.propify.challenge.repository.PropertyRepository;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -34,7 +34,7 @@ public class PropertyRepositoryTest {
         property.setRentPrice(new BigDecimal("3000.99"));
         property.setType(PropertyType.MULTI_FAMILY);
 
-        propertyRepository.save(property);
+        // propertyRepository.save(property);
 
         // TODO: add assertions
     }

@@ -1,13 +1,14 @@
 package com.propify.challenge.controller;
 
-import com.propify.challenge.model.Property;
-import com.propify.challenge.model.PropertyReport;
+import com.propify.challenge.model.dao.PropertyDao;
+import com.propify.challenge.model.dto.Property;
+import com.propify.challenge.model.dto.PropertyReport;
 import com.propify.challenge.service.PropertyService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Collection;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/properties")
@@ -23,22 +24,28 @@ public class PropertyController {
 
     // API endpoints for CRUD operations on entities of type Property
 
-    public Collection<Property> search(String minRentPrice, String maxRentPrice) {
+    public Flux<PropertyDao> search(String minRentPrice, String maxRentPrice) {
         return propertyService.search(minRentPrice, maxRentPrice);
     }
 
-    public Property findById(int id) {
+    public Mono<PropertyDao> findById(int id) {
+        // It will be a dto later, I need to be able to build first. Same with the others.
+
         return propertyService.findById(id);
     }
 
     public void insert(Property property) {
         // TODO: Property attributes must be validated
-        propertyService.insert(property);
+
+        PropertyDao propertyDao = new PropertyDao();
+        propertyService.insert(propertyDao);
     }
 
     public void update(Property property) {
         // TODO: Property attributes must be validated
-        propertyService.update(property);
+
+        PropertyDao propertyDao = new PropertyDao();
+        propertyService.update(propertyDao);
     }
 
     public void delete(int id) {

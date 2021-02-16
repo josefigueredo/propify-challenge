@@ -19,4 +19,9 @@ I have to create a configuration for r2dbc, so I create the schema and insert so
 Thinking about the schema of the db because it is incomplete. Being a relational db, I made the assumption that every property have one address and one address have one property (I don't know if its like that, but it's easier to implement right now). For that I have to create a fk between them. I also need an index in rent price because there is a specific search in the controller that uses that column.
 I will decouple the model into a dto for the controller and a dao for the db.
 
+## Step 4
+In order to go bottom up from repo to controller I will make the changes that needs to be done (mono/flux everything).
+The annotated controller part will be on other step.
+
+
 
