@@ -23,5 +23,10 @@ I will decouple the model into a dto for the controller and a dao for the db.
 In order to go bottom up from repo to controller I will make the changes that needs to be done (mono/flux everything).
 The annotated controller part will be on other step.
 
+# Step 5
+Annotate the controller with the right verb, params and req bodies.
 
+# Step 6
+Add swagger for easier manual testing.
+Manually test every operation and debug.
 
