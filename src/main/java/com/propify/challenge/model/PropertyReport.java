@@ -1,14 +1,17 @@
 package com.propify.challenge.model;
 
+import lombok.Data;
+
 import java.util.Map;
 
+@Data
 public class PropertyReport {
 
-    Integer totalQuantity;
+    private Integer totalQuantity;
 
-    Map<PropertyType, Integer> quantityPerType;
+    private Map<PropertyType, Integer> quantityPerType;
 
-    double averageRentPrice;
+    private double averageRentPrice;
 
-    Integer illinoisQuantity;
+    private Integer illinoisQuantity;
 }

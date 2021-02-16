@@ -1,14 +1,34 @@
 package com.propify.challenge.model;
 
-public class Address {
+import lombok.Data;
 
-    public String street; // must not be null or blank
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 
-    public String city; // must not be null or blank
+@Data
+public class Address implements Serializable {
 
-    public String state; // 2-letter code, must not be null or blank
+    @NotNull
+    @NotBlank
+    private String street; // must not be null or blank
 
-    public String zip; // 5-digit code, must not be null or blank
+    @NotNull
+    @NotBlank
+    private String city; // must not be null or blank
 
-    public String timezone; // Must be a valid timezone
+    @NotNull
+    @NotBlank
+    @Pattern(regexp = "^[A-Z]{2}$")
+    private String state; // 2-letter code, must not be null or blank
+
+    @NotNull
+    @NotBlank
+    @Pattern(regexp = "^[0-9]{5}$")
+    private String zip; // 5-digit code, must not be null or blank
+
+    @NotNull
+    @NotBlank
+    private String timezone; // Must be a valid timezone
 }
