@@ -7,7 +7,7 @@ There is no sign of spring controller code in it.
 The service do not use inversion of dependency, but suggest that the posible ioc to use is method injection which I will change to constructor injection to easy the testing.
 The model do not use encapsulation, I would use Lombok to write less code (wish it was kotlin).
 The PropertyType class is a candidate to be refactored as an enum.
-I have never used mybatis, so to speed up my refactor I will not use it. But in normal conditions I would investigate and learn about it.
+I have never used mybatis, so to speed up my refactor I will not use it. In normal conditions I would investigate and learn about it.
 The class PropertyService says: "Sending the alert should be non-blocking (asynchronous)", so instead of only make that part non-blocking I will use spring's proyect reactor to make the entire app non-blocking in conjunction with r2dbc (mysql flavor) to make the access to de db non-blocking also.
 
 ## Step 2
@@ -21,7 +21,7 @@ I will decouple the model into a dto for the controller and a dao for the db.
 
 ## Step 4
 In order to go bottom up from repo to controller I will make the changes that needs to be done (mono/flux everything).
-The annotated controller part will be on other step.
+The annotated controller part will be on another step.
 
 # Step 5
 Annotate the controller with the right verb, params and req bodies.
@@ -30,3 +30,8 @@ Annotate the controller with the right verb, params and req bodies.
 Add swagger for easier manual testing.
 Manually test every operation and debug.
 
+# Step 7
+I have realized that r2dbc for mysql doesn't support relations yet (I always use the MongoDB & Redis flavor). So I had to chain the relations myself, for every operation. 
+
+# Step 8
+Manual tests looks good. Now I'm trying to make unit tests at least one for controller/service/repository.

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 @Log4j2
 public class AlertService {
 
-    public void sendPropertyDeletedAlert(int id) {
+    public void sendPropertyDeletedAlert(Integer id) {
         // What this method actually does is not important
-
+        log.info(">> Alert: Property deleted with id: " + id);
     }
 }
