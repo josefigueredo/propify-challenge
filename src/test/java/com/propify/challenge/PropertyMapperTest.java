@@ -13,6 +13,8 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
+import java.math.BigDecimal;
+
 @MybatisTest
 @SpringJUnitConfig
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -29,8 +31,8 @@ public class PropertyMapperTest {
     @Test
     public void testInsert() {
         var property = new Property();
-        property.rentPrice = 3000.99;
-        property.type = PropertyType.MULTI_FAMILY;
+        property.setRentPrice(new BigDecimal("3000.99"));
+        property.setType(PropertyType.MULTI_FAMILY);
 
         propertyMapper.insert(property);
 

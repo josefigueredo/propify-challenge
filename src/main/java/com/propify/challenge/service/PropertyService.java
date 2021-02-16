@@ -25,12 +25,12 @@ public class PropertyService {
 
     public void insert(Property property) {
         propertyMapper.insert(property);
-        System.out.println("CREATED: " + property.id);
+        System.out.println("CREATED: " + property.getId());
     }
 
     public void update(Property property) {
         propertyMapper.update(property);
-        System.out.println("UPDATED: " + property.id);
+        System.out.println("UPDATED: " + property.getId());
     }
 
     public void delete(int id) {
