@@ -33,7 +33,7 @@ public class PropertyService {
         this.propertyRepository = propertyRepository;
     }
 
-    Function<PropertyDao, Mono<Property>> propertyDAO2property = (PropertyDao propertyDao) -> {
+    Function<PropertyDao, Mono<Property>> propertyDao2propertyDto = (PropertyDao propertyDao) -> {
         Property property = new Property();
         BeanUtils.copyProperties(propertyDao, property);
         Address address = new Address();
@@ -42,19 +42,19 @@ public class PropertyService {
         return Mono.just(property);
     };
 
-    private PropertyDao property2propertyDAO(Property property) {
+    private PropertyDao propertyDto2propertyDao(Property property) {
         PropertyDao propertyDao = new PropertyDao();
         BeanUtils.copyProperties(property, propertyDao);
         return propertyDao;
     }
 
-    Function<AddressDao, Mono<Address>> addressDAO2address = (AddressDao addressDao) -> {
+    Function<AddressDao, Mono<Address>> addressDao2addressDto = (AddressDao addressDao) -> {
         Address address = new Address();
         BeanUtils.copyProperties(addressDao, address);
         return Mono.just(address);
     };
 
-    private AddressDao address2addressDAO(Address address) {
+    private AddressDao addressDto2addressDao(Address address) {
         AddressDao addressDao = new AddressDao();
         BeanUtils.copyProperties(address, addressDao);
         return addressDao;
@@ -64,29 +64,32 @@ public class PropertyService {
         return propertyRepository.search(minRentPrice, maxRentPrice);
     }
 
-    public Mono<PropertyDao> findById(int id) {
-        return propertyRepository.findById(id);
+    public Mono<Property> findById(int id) {
+        return propertyRepository
+                .findById(id)
+                .flatMap(propertyDao2propertyDto);
     }
 
-    public Mono<PropertyDao> insert(PropertyDao property) {
-        return propertyRepository.save(property);
+    public Mono<Property> insert(Property property) {
+        return propertyRepository
+                .save(propertyDto2propertyDao(property))
+                .flatMap(propertyDao2propertyDto);
     }
 
-    public Mono<PropertyDao> update(PropertyDao property) {
-        return propertyRepository.save(property);
+    public Mono<Property> update(Property property) {
+        return propertyRepository
+                .save(propertyDto2propertyDao(property))
+                .flatMap(propertyDao2propertyDto);
     }
 
-    public void delete(int id) {
-        propertyRepository.deleteById(id);
-        //propertyMapper.delete(id);
-        //System.out.println("DELETED: " + id);
-
-        //alertService.sendPropertyDeletedAlert(id);
+    public Mono<Void> delete(int id) {
+        return propertyRepository
+                .deleteById(id);
         // TODO: Sending the alert should be non-blocking (asynchronous)
         //  Extra points for only sending the alert when/if the transaction is committed
     }
 
-    public PropertyReport propertyReport() {
+    public Mono<PropertyReport> propertyReport() {
         throw new RuntimeException("Not implemented");
         //var allProperties = propertyMapper.search(null, null);
         //var propertyReport = new PropertyReport();
