@@ -1,17 +1,19 @@
 package com.propify.challenge.service;
 
-import com.propify.challenge.model.AddressMapper;
 import com.propify.challenge.model.Property;
-import com.propify.challenge.model.PropertyMapper;
 import com.propify.challenge.model.PropertyReport;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
+@Service
+@Log4j2
 public class PropertyService {
 
-    PropertyMapper propertyMapper;
+    //PropertyMapper propertyMapper;
 
-    AddressMapper addressMapper;
+    //AddressMapper addressMapper;
 
     AlertService alertService;
 

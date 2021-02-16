@@ -10,6 +10,8 @@ import java.io.Serializable;
 @Data
 public class Address implements Serializable {
 
+    private Integer id; // This is inferred by the AddressMapper class
+
     @NotNull
     @NotBlank
     private String street; // must not be null or blank
