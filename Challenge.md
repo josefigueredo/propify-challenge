@@ -13,7 +13,10 @@ The class PropertyService says: "Sending the alert should be non-blocking (async
 ## Step 2
 I need to create 2 repositories one for properties and one for addresses.
 I have to change most of the mybatis mapping automagic things to jpa automagic.
-I have to create a configuration for r2dbc so I create the schema and insert some data.
+I have to create a configuration for r2dbc, so I create the schema and insert some data.
 
+## Step 3
+Thinking about the schema of the db because it is incomplete. Being a relational db, I made the assumption that every property have one address and one address have one property (I don't know if its like that, but it's easier to implement right now). For that I have to create a fk between them. I also need an index in rent price because there is a specific search in the controller that uses that column.
+I will decouple the model into a dto for the controller and a dao for the db.
 
 
