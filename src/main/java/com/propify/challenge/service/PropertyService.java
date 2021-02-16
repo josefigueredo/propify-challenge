@@ -2,6 +2,8 @@ package com.propify.challenge.service;
 
 import com.propify.challenge.model.Property;
 import com.propify.challenge.model.PropertyReport;
+import com.propify.challenge.repository.AddressRepository;
+import com.propify.challenge.repository.PropertyRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
@@ -11,42 +13,55 @@ import java.util.Collection;
 @Log4j2
 public class PropertyService {
 
-    //PropertyMapper propertyMapper;
-
-    //AddressMapper addressMapper;
-
     AlertService alertService;
+    AddressRepository addressRepository;
+    PropertyRepository propertyRepository;
+
+    public PropertyService(
+            AlertService alertService,
+            AddressRepository addressRepository,
+            PropertyRepository propertyRepository
+    ) {
+        this.alertService = alertService;
+        this.addressRepository = addressRepository;
+        this.propertyRepository = propertyRepository;
+    }
 
     public Collection<Property> search(String minRentPrice, String maxRentPrice) {
-        return propertyMapper.search(minRentPrice, maxRentPrice);
+        throw new RuntimeException("Not implemented");
     }
 
     public Property findById(int id) {
-        return propertyMapper.findById(id);
+        throw new RuntimeException("Not implemented");
+        //return propertyMapper.findById(id);
     }
 
     public void insert(Property property) {
-        propertyMapper.insert(property);
-        System.out.println("CREATED: " + property.getId());
+        throw new RuntimeException("Not implemented");
+        //propertyMapper.insert(property);
+        //System.out.println("CREATED: " + property.getId());
     }
 
     public void update(Property property) {
-        propertyMapper.update(property);
-        System.out.println("UPDATED: " + property.getId());
+        throw new RuntimeException("Not implemented");
+        //propertyMapper.update(property);
+        //System.out.println("UPDATED: " + property.getId());
     }
 
     public void delete(int id) {
-        propertyMapper.delete(id);
-        System.out.println("DELETED: " + id);
+        throw new RuntimeException("Not implemented");
+        //propertyMapper.delete(id);
+        //System.out.println("DELETED: " + id);
 
-        alertService.sendPropertyDeletedAlert(id);
+        //alertService.sendPropertyDeletedAlert(id);
         // TODO: Sending the alert should be non-blocking (asynchronous)
         //  Extra points for only sending the alert when/if the transaction is committed
     }
 
     public PropertyReport propertyReport() {
-        var allProperties = propertyMapper.search(null, null);
-        var propertyReport = new PropertyReport();
+        throw new RuntimeException("Not implemented");
+        //var allProperties = propertyMapper.search(null, null);
+        //var propertyReport = new PropertyReport();
 
         // Calculate total quantity
         // propertyReport.totalQuantity =
@@ -60,6 +75,6 @@ public class PropertyService {
         // Calculate the quantity of properties in the state of Illinois (IL)
         // propertyReport.illinoisQuantity =
 
-        return propertyReport;
+        //return propertyReport;
     }
 }

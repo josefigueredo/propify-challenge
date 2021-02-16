@@ -3,8 +3,8 @@ package com.propify.challenge;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.propify.challenge.model.Property;
-import com.propify.challenge.model.PropertyMapper;
 import com.propify.challenge.model.PropertyType;
+import com.propify.challenge.repository.PropertyRepository;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +23,10 @@ import java.math.BigDecimal;
         DependencyInjectionTestExecutionListener.class,
         DbUnitTestExecutionListener.class
 })
-public class PropertyMapperTest {
+public class PropertyRepositoryTest {
 
     @Autowired
-    PropertyMapper propertyMapper;
+    PropertyRepository propertyRepository;
 
     @Test
     public void testInsert() {
@@ -34,16 +34,16 @@ public class PropertyMapperTest {
         property.setRentPrice(new BigDecimal("3000.99"));
         property.setType(PropertyType.MULTI_FAMILY);
 
-        propertyMapper.insert(property);
+        propertyRepository.save(property);
 
         // TODO: add assertions
     }
 
     @Test
     public void testFindById() {
-        var property = propertyMapper.findById(1);
+        var property = propertyRepository.findById(1);
 
-        assert property != null;
+        assert property.block() != null;
         // TODO: add assertions
     }
 
